@@ -61,6 +61,7 @@
 		serial0 = &uart1;
 		serial1 = &uart2;
 		serial2 = &uart3;
+                spi2 = &spi2;
 	};
 
 	chosen {
@@ -135,6 +136,22 @@
 	pinctrl-0 = <&i2s0_data_pins_a>, <&i2s0_data_pins_a>;
 	status = "okay";
 };
+
+&spi2{
+       pinctrl-names = "default";
+       pinctrl-0 = <&spi2_pins_a>,
+                   <&spi2_cs0_pins_a>;
+       status = "okay";
+       spi2_0 {
+               #address-cells = <1>;
+               #size-cells = <0>;
+
+               compatible = "spidev";
+
+               reg = <0>;
+               spi-max-frequency = <50000000>;
+       };
+ };
 
 &lradc {
 	vref-supply = <&reg_ldo2>;
